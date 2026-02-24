@@ -130,9 +130,10 @@ function Framework()
 end
 
 function GetCoreObject()
-    if Framework() == 1 or Framework() == 3 then
-        -- QBCore
+    if Framework() == 1 then
         return exports["qb-core"]:GetCoreObject()
+    elseif Framework() == 3 then
+        return exports["qbx_core"]:GetCoreObject()
     elseif Framework() == 2 then
         return exports["es_extended"]:getSharedObject()
     end

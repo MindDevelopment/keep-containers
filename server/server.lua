@@ -92,6 +92,9 @@ local function HasBoltCutter(source, player)
             return true
         end
         return false
+    elseif Framework == 3 then
+        local count = exports.ox_inventory:Search(source, 'count', Config.bolt_cutter_item_name)
+        return count and count > 0
     elseif Framework == 2 then
         if not player.hasItem(Config.bolt_cutter_item_name) then return false end
         local count = player.hasItem(Config.bolt_cutter_item_name).count
@@ -110,8 +113,10 @@ local function remove_item(source, Player, item_name, amount, slot)
 end
 
 local function RemoveItem(source, Player, item_name, amount, slot)
-    if Framework == 1 or Framework == 3 then
+    if Framework == 1 then
         return remove_item(source, Player, item_name, amount, slot)
+    elseif Framework == 3 then
+        return exports.ox_inventory:RemoveItem(source, item_name, amount)
     elseif Framework == 2 then
         return Player.removeInventoryItem(item_name, amount)
     end
@@ -208,7 +213,7 @@ RegisterNetEvent("keep-containers:server:container:check_password", function(ran
             elseif Framework == 2 or Framework == 3 then
                 local stash_id = "Container_" .. random_id
                 exports["ox_inventory"]:RegisterStash(stash_id, "Container", stash_info.slots or 10, stash_info.size or 10000)
-                TriggerClientEvent("keep_containers:client:open", src, stash_info.type)
+                TriggerClientEvent("keep-containers:client:open", src, {size = stash_info.size, slots = stash_info.slots, random_id = random_id})
             end
         end
     end)
