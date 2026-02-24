@@ -12,7 +12,7 @@ Config = Config or {}
 -- to add more items/containers check shared/containers.lua
 
 Config.MagicTouch = false
-Config.FrameWork = "qb"         -- qb/esx/qbox
+Config.FrameWork = "qbox"         -- qb/esx/qbox
 Config.input = "ox_lib"         -- keep-input / qb-input / ox_lib (ESX)
 Config.esx_target = "ox_target" -- ox_target / qtarget (ONLY ESX won't effect qbcore)
 
