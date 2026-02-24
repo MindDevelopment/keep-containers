@@ -27,7 +27,7 @@ function is_super_user(citizenid)
 end
 
 function PlayerData()
-    if Framework == 1 then
+    if Framework == 1 or Framework == 3 then
         return Core.Functions.GetPlayerData()
     elseif Framework == 2 then
         return Core.PlayerData
@@ -35,7 +35,7 @@ function PlayerData()
 end
 
 function GetCitizenId(PlayerData)
-    if Framework == 1 then
+    if Framework == 1 or Framework == 3 then
         if not PlayerData then return -1 end
         return PlayerData.citizenid
     elseif Framework == 2 then
@@ -45,7 +45,7 @@ end
 
 function GetJob()
     local PlayerData = PlayerData()
-    if Framework == 1 then
+    if Framework == 1 or Framework == 3 then
         return PlayerData.job.name, PlayerData.job.grade.level
     elseif Framework == 2 then
         return PlayerData.job.name, PlayerData.job.grade
